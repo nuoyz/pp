@@ -165,8 +165,61 @@ section > .piano {
   background-color: #231e1e;
 }
 
+.btn {
+  backface-visibility: hidden;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  transition: 0.1s linear;
+}
+.btn:hover, .btn:focus {
+  outline: 0;
+}
+.btn:active {
+  transform: translateY(4px);
+}
+
+.btn--a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  width: 160px;
+  cursor: pointer;
+  background-color: #A43A5B;
+  border: 1px solid #6b263c;
+  box-shadow: inset 0 1px #c86382, 0 5px #6b263c;
+  text-shadow: 0 -1px 0 #6b263c;
+}
+.btn--a:hover, .btn--a:focus {
+  background-color: #7e2d46;
+  border-color: #591f31;
+  box-shadow: inset 0 1px #b74165, 0 5px #461927;
+  text-shadow: 0 -1px 0 #461927;
+}
+.btn--a:active {
+  box-shadow: inset 0 1px #b74165, 0 1px #461927;
+  text-shadow: 0 -1px 0 #461927;
+}
+
+.play {
+  font: 18px/1 Verdana, sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.play span.fa {
+  padding: 0 5px 0 3px;
+}
+
+
 .sheet-header {
   display: flex;
+  padding-top: 20px;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
@@ -205,6 +258,38 @@ section > .piano {
             0px -80px 60px #973717,
             10px -40px 70px #451b0e;
 }
+
+
+.sheet-content-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  width: 100%;
+  text-align: center;
+  font: 700 100px "Comic Sans MS";
+  background: linear-gradient(-45deg, #4bc0c8 25%, #feac5e 25%, #feac5e 50%, #4bc0c8 50%, #4bc0c8 75%, #feac5e 75%, #feac5e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 20px 20px;
+  background-position: 0 0;
+  -webkit-animation: stripes 1s linear infinite;
+          animation: stripes 1s linear infinite;
+}
+
+@-webkit-keyframes stripes {
+  100% {
+    background-position: 20px 0, 20px 0, 20px 0;
+  }
+}
+
+@keyframes stripes {
+  100% {
+    background-position: 20px 0, 20px 0, 20px 0;
+  }
+}
+
 
 .score {
   position: relative;
