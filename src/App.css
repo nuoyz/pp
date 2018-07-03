@@ -1,0 +1,591 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@font-face {
+  font-family: FreeSerif;
+  src: url('./FreeSerif.woff');
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+.overlay a {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translateY(-50%, -50%);
+  padding: 5vh 7vw;
+  border-radius: 10px;
+  background-color: #1b67cf;
+  color: #fff;
+  text-decoration: none;
+  font-size: 200%;
+  font-weight: bold;
+}
+
+section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+section > .sheet {
+  -webkit-flex: 1 calc(60% - 15px);
+  flex: 1 calc(60% - 15px);
+}
+section > .settings {
+  -webkit-flex: 1 30px;
+  flex: 1 30px;
+}
+section > .piano {
+  flex: 1 calc(40% - 15px);
+}
+
+.settings {
+  background: #444;
+  color: #fff;
+  line-height: 30px;
+  padding: 0 3vw;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+.settings > * {
+  -webkit-flex: 1 100%;
+  flex: 1 100%;
+}
+.settings .song {
+  font-family: FreeSerif;
+}
+.settings .color-select {
+  text-align: right;
+}
+.settings .color-select > div {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 2px 4px 0 4px;
+  vertical-align: sub;
+  border-radius: 4px;
+  background: white;
+}
+
+.piano {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  padding: 2vh;
+  background: #222;
+}
+.piano > * {
+  -webkit-flex: 1 100%;
+  flex: 1 100%;
+  display: block;
+}
+.key {
+  position: relative;
+  display: block;
+  background: white;
+  border: 2px solid #333;
+  border-top: none;
+  border-radius: 4px;
+  border-bottom-right-radius: 2vw;
+  border-bottom-left-radius: 2vw;
+  margin-bottom: 1vh;
+}
+.key span {
+  position: absolute;
+  bottom: 2vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 3vw;
+  font-weight: bold;
+  color: #333;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.key.down {
+  margin-bottom: 0;
+  box-shadow: inset 0 -3vh 7vw rgba(0, 0, 0, 0.2);
+}
+.key.C span:after {
+  content: 'C';
+}
+.key.D span:after {
+  content: 'D';
+}
+.key.E span:after {
+  content: 'E';
+}
+.key.F span:after {
+  content: 'F';
+}
+.key.G span:after {
+  content: 'G';
+}
+.key.A span:after {
+  content: 'A';
+}
+.key.B span:after {
+  content: 'B';
+}
+@media (max-width: 1023px) {
+  .key.o5 {
+    display: none;
+  }
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  overflow: auto;
+  font-size: 36px;
+  background-color: #231e1e;
+}
+
+.btn {
+  backface-visibility: hidden;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  transition: 0.1s linear;
+}
+.btn:hover, .btn:focus {
+  outline: 0;
+}
+.btn:active {
+  transform: translateY(4px);
+}
+
+.btn--a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  width: 160px;
+  cursor: pointer;
+  background-color: #A43A5B;
+  border: 1px solid #6b263c;
+  box-shadow: inset 0 1px #c86382, 0 5px #6b263c;
+  text-shadow: 0 -1px 0 #6b263c;
+}
+.btn--a:hover, .btn--a:focus {
+  background-color: #7e2d46;
+  border-color: #591f31;
+  box-shadow: inset 0 1px #b74165, 0 5px #461927;
+  text-shadow: 0 -1px 0 #461927;
+}
+.btn--a:active {
+  box-shadow: inset 0 1px #b74165, 0 1px #461927;
+  text-shadow: 0 -1px 0 #461927;
+}
+
+.play {
+  font: 18px/1 Verdana, sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.play span.fa {
+  padding: 0 5px 0 3px;
+}
+
+
+.sheet-header {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.SH-score {
+  margin: 0;
+  padding: 0;
+  color: #FEAE1B;
+}
+
+.SH-btn {
+  width: 100px;
+  height: 50px;
+  border:0px;
+  border-radius: 200px;
+  font-size: 32px;
+  background-color:#FEAE1B;
+  border-color: #FEAE1B;
+  color: #fff;
+  box-shadow: 5px 7px 12px 3px 3px 12px #917109;
+  cursor: pointer;
+}
+
+.sheet-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 100px "Comic Sans MS";
+  color: white;
+  text-shadow: 0 0 20px #fdec84,
+            10px -10px 30px #ffae35,
+            20px -20px 40px #ec760c,
+            -20px -60px 50px #cd4607,
+            0px -80px 60px #973717,
+            10px -40px 70px #451b0e;
+}
+
+
+.sheet-content-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  width: 100%;
+  text-align: center;
+  font: 700 100px "Comic Sans MS";
+  background: linear-gradient(-45deg, #4bc0c8 25%, #feac5e 25%, #feac5e 50%, #4bc0c8 50%, #4bc0c8 75%, #feac5e 75%, #feac5e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 20px 20px;
+  background-position: 0 0;
+  -webkit-animation: stripes 1s linear infinite;
+          animation: stripes 1s linear infinite;
+}
+
+@-webkit-keyframes stripes {
+  100% {
+    background-position: 20px 0, 20px 0, 20px 0;
+  }
+}
+
+@keyframes stripes {
+  100% {
+    background-position: 20px 0, 20px 0, 20px 0;
+  }
+}
+
+
+.score {
+  position: relative;
+  height: 50px;
+  margin: 18px 0;
+  margin-right: -1px;
+  border: 1px solid #000;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+.score:first-child {
+  border-left-width: 4px;
+}
+.score:last-child {
+  border-right-width: 4px;
+}
+.score:before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  left: 0;
+  right: 0;
+  border: 1px solid #000;
+  border-left: none;
+  border-right: none;
+}
+.score:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #000;
+}
+.score > note {
+  flex: 1 100%;
+  -webkit-flex: 1 100%;
+}
+note {
+  font-size: 70px;
+  font-family: FreeSerif;
+  position: relative;
+  padding: 0 20px;
+}
+@media (max-width: 767px) {
+  note {
+    padding: 0 3vw;
+  }
+}
+@media (max-height: 500px) {
+  note {
+    padding: 0 13px;
+  }
+}
+.note {
+  position: absolute;
+  height: 100%;
+  line-height: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+.note:after {
+  position: absolute;
+  height: 200%;
+  line-height: 200%;
+  bottom: 0;
+  left: 10%;
+  right: 0;
+}
+.note.t8:after {
+  content: '\266A';
+} /* eight note */
+.note.t4:after {
+  content: '\2669';
+} /* quarter note */
+.note.t2:after {
+  content: '\1d15e';
+} /* half note */
+.note.t1:after {
+  content: '\1d15d';
+} /* whole note */
+.note.clef:after {
+  content: '\1d11e';
+  font-size: 80%;
+  bottom: -30%;
+}
+.note.B3 {
+  bottom: -63%;
+}
+.note.B3:before {
+  content: '';
+  position: absolute;
+  top: 75%;
+  left: 5%;
+  width: 25px;
+  border-top: 1px solid #000;
+}
+.note.C4 {
+  bottom: -50%;
+}
+.note.C4:before {
+  content: '';
+  position: absolute;
+  top: 75%;
+  left: 5%;
+  width: 25px;
+  border-top: 1px solid #000;
+}
+.note.D4 {
+  bottom: -37%;
+}
+.note.E4 {
+  bottom: -25%;
+}
+.note.F4 {
+  bottom: -13%;
+}
+.note.G4 {
+  bottom: 0;
+}
+.note.A4 {
+  bottom: 13%;
+}
+.note.B4,
+.note.C5,
+.note.D5,
+.note.E5,
+.note.F5,
+.note.G5 {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.note.B4 {
+  bottom: -25%;
+}
+.note.C5 {
+  bottom: -13%;
+}
+.note.D5 {
+  bottom: 0;
+}
+.note.E5 {
+  bottom: 13%;
+}
+.note.F5 {
+  bottom: 25%;
+}
+.note.G5 {
+  bottom: 37%;
+}
+
+/* color schemes */
+.settings .color-select .color-basic {
+  background: #1b67cf;
+}
+.color-basic .key span {
+  color: #fff;
+}
+.color-basic .key.C {
+  background: #1b67cf;
+}
+.color-basic .note.C {
+  color: #1b67cf;
+}
+.color-basic .key.D {
+  background: #edea15;
+}
+.color-basic .note.D {
+  color: #edea15;
+}
+.color-basic .key.E {
+  background: #ea2525;
+}
+.color-basic .note.E {
+  color: #ea2525;
+}
+.color-basic .key.F {
+  background: #eee;
+}
+.color-basic .key.F span {
+  color: #333;
+}
+.color-basic .note.F {
+  color: #aaa;
+}
+.color-basic .key.G {
+  background: #269428;
+}
+.color-basic .note.G {
+  color: #269428;
+}
+.color-basic .key.A {
+  background: #ef7320;
+}
+.color-basic .note.A {
+  color: #ef7320;
+}
+.color-basic .key.B {
+  background: #7f5d82;
+}
+.color-basic .note.B {
+  color: #7f5d82;
+}
+
+.settings .color-select .color-ruby {
+  background: #ec1622;
+}
+.color-ruby .key span {
+  color: #fff;
+}
+.color-ruby .key.C {
+  background: #b317e8;
+}
+.color-ruby .note.C {
+  color: #b317e8;
+}
+.color-ruby .key.D {
+  background: #1efcf1;
+}
+.color-ruby .note.D {
+  color: #1efcf1;
+}
+.color-ruby .key.E {
+  background: #1efc7e;
+}
+.color-ruby .note.E {
+  color: #1efc7e;
+}
+.color-ruby .key.F {
+  background: #ff37d7;
+}
+.color-ruby .note.F {
+  color: #ff37d7;
+}
+.color-ruby .key.G {
+  background: #ec1622;
+}
+.color-ruby .note.G {
+  color: #ec1622;
+}
+.color-ruby .key.A {
+  background: #444;
+}
+.color-ruby .note.A {
+  color: #444;
+}
+.color-ruby .key.B {
+  background: #ffa024;
+}
+.color-ruby .note.B {
+  color: #ffa024;
+}
+
+/* Piano black keys instead of letters on keys */
+.settings .color-select .labels-piano {
+  position: relative;
+}
+.settings .color-select .labels-piano:after,
+.labels-piano .key:before,
+.labels-piano .key:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 20vh;
+  background: #333;
+}
+.settings .color-select .labels-piano:after {
+  right: 0;
+  height: 60%;
+  width: 50%;
+  border-bottom-left-radius: 0.5vw;
+  border-top-right-radius: 4px;
+}
+.labels-piano .key span {
+  color: transparent !important;
+}
+.labels-piano .key.D:before,
+.labels-piano .key.E:before,
+.labels-piano .key.G:before,
+.labels-piano .key.A:before,
+.labels-piano .key.B:before {
+  left: 0;
+  width: 30%;
+  border-bottom-right-radius: 1vw;
+}
+.labels-piano .key.C:after,
+.labels-piano .key.D:after,
+.labels-piano .key.F:after,
+.labels-piano .key.G:after,
+.labels-piano .key.A:after {
+  right: 0;
+  width: 30%;
+  border-bottom-left-radius: 1vw;
+}
